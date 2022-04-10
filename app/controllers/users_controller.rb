@@ -72,7 +72,7 @@ class UsersController < ApplicationController
 
     return access_denied unless is_admin?(current_user) || @user == current_user
 
-    if @user.update_attributes(user_params)
+    if @user.update(user_params)
       flash[:success] = 'Preferences saved'
       redirect_to preferences_path
       log "edit_user success"

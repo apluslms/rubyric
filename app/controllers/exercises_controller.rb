@@ -200,7 +200,7 @@ class ExercisesController < ApplicationController
 
     return access_denied unless @course.has_teacher(current_user) || is_admin?(current_user)
 
-    if @exercise.update_attributes(exercise_params)
+    if @exercise.update(exercise_params)
       #flash[:success] = 'Assignment was successfully updated.'
       redirect_to @exercise
       log "edit_exercise success #{@exercise.id}"

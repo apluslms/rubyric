@@ -5,13 +5,12 @@ source 'https://rubygems.org'
 
 ruby '>=2.3.1'
 
-#gem 'rails', '5.2.4.4'
-gem 'rails', '5.2.6'
+gem 'rails', '~> 6.1.6'
 
 gem 'puma', '~> 3.0'
 
 #gem 'pg'
-gem 'pg', '~> 0.18'
+gem 'pg', '~> 1.1'
 
 # Gems used only for assets and not required in production environments by default.
 
@@ -60,7 +59,8 @@ gem 'jquery-rails', '~> 4.2.2'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-gem 'json', '2.0.3' # For Ruby 2.3 compatibility
+#gem 'json', '2.0.3' # For Ruby 2.3 compatibility
+gem 'json', '~> 2.6'
 
 gem 'authlogic'
 gem 'oauth'

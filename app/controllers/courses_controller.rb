@@ -66,7 +66,7 @@ class CoursesController < ApplicationController
 
     return access_denied unless @is_teacher
 
-    if @course.update_attributes(course_params)
+    if @course.update(course_params)
       flash[:success] = t(:course_updated_flash)
       redirect_to(@course)
       log "edit_course success #{@course.id}"

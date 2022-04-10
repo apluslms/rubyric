@@ -118,7 +118,7 @@ class CourseInstancesController < ApplicationController
 
     @pricing = @course_instance.pricing
     @course_instance.agree_terms = '1'
-    if @course_instance.update_attributes(course_instance_params)
+    if @course_instance.update(course_instance_params)
       if @pricing
         @pricing.planned_students = params[:planned_students].to_i
         @pricing.save

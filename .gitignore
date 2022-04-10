@@ -22,3 +22,4 @@ rubyric.iml
 /config/initializers/settings.rb
 /config/initializers/secret_token.rb
 /public/assets
+/config/master.key

@@ -87,7 +87,7 @@ class Review < ApplicationRecord
 
   def update_from_json(id, json)
     review = Review.find(id)
-    review.update_attributes(json)
+    review.update(json)
   end
 
   # Saves the file to the filesystem.
