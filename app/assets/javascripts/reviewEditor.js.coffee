@@ -532,7 +532,7 @@ class @ReviewEditor extends @Rubric
     else
       @averageGrade = ko.observable()
 
-    ko.applyBindings(this)
+    ko.applyBindings(this, document.body)
     
     @finalGrade.subscribe(=> @saved = false )
     @finishedText.subscribe(=> @saved = false )

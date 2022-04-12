@@ -203,5 +203,5 @@ class AssignmentEditor
 
 jQuery ->
   assignmentEditor = new AssignmentEditor(window.group_data)
-  ko.applyBindings(assignmentEditor)
+  ko.applyBindings(assignmentEditor, document.body)
   $('#assign-groups').removeClass('busy')

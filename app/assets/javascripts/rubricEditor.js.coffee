@@ -737,7 +737,7 @@ class @RubricEditor
       decorateInputElement: true
       errorElementClass: 'invalid'
     
-    ko.applyBindings(this)
+    ko.applyBindings(this, document.body)
     
     this.subscribeToChanges()
     @saved = true

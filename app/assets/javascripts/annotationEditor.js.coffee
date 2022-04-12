@@ -509,7 +509,7 @@ class @AnnotationEditor extends Rubric
     
     @finalGrade.subscribe => @saved = false
 
-    ko.applyBindings(this)
+    ko.applyBindings(this, document.body)
 
     # Select initial rubric page
     initialPage = @pagesById[initialPageId] if initialPageId?
