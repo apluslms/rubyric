@@ -374,14 +374,6 @@ class SubmissionsController < ApplicationController
   end
 
   def load_lti
-    # Authorized IP?
-    remote_ip = (request.env['HTTP_X_FORWARDED_FOR'] || request.remote_ip).split(',').first
-    unless APLUS_IP_WHITELIST.include? remote_ip
-      @heading = 'LTI error: Requests only allowed from whitelisted IPs. Use IPv6 format.'
-      render template: 'shared/error'
-      return false
-    end
-
     # Find exercise
     organization = Organization.find_by_domain(params['oauth_consumer_key']) || Organization.create(domain: params['oauth_consumer_key'])
 

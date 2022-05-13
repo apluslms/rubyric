@@ -570,13 +570,6 @@ class ExercisesController < ApplicationController
   
   # A+ calls this. Redirects to submit to exercise if exercise exists. Otherwise creates the exercise and then redirects to it.
   def aplus_exercise
-    # Authorized IP?
-    remote_ip = (request.env['HTTP_X_FORWARDED_FOR'] || request.remote_ip).split(',').first
-    unless APLUS_IP_WHITELIST.include? remote_ip
-      @heading = 'LTI error: Requests only allowed from A+'
-      render template: 'shared/error'
-      return false
-    end
     # Check that neccessary lti related params are included in the request
     if params['oauth_consumer_key'].blank? || params[:context_id].blank? || params[:resource_link_id].blank?
       @heading = 'Insufficient parameters'
