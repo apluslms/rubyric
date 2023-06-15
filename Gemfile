@@ -22,7 +22,9 @@ gem 'coffee-rails', '~> 4.2.1'
 #gem 'therubyracer', '~> 0.12.3'
 #gem 'therubyracer'
 gem 'execjs'
-gem 'mini_racer'
+
+# See the Dockerfile for an explanation regarding mini_racer installation problems.
+gem 'mini_racer', '0.6.2'
 
 gem 'uglifier', '>= 3.0'
 gem 'jquery-ui-rails', '~> 4.2.0'
@@ -31,7 +33,7 @@ gem 'jquery-ui-rails', '~> 4.2.0'
 group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda'
-  gem 'capybara'
+  gem 'capybara', '3.36.0' # Last version to support Ruby 2.6
   #gem 'capybara-webkit'
 
   gem 'byebug', platform: :mri
