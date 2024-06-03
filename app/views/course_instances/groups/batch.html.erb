@@ -10,6 +10,32 @@
   </ul>
 </div>
 
+<!-- Warning message if there are errors creating any of the listed groups -->
+<% unless @reported_ambiguous_keys.empty? and @reviewers_not_found.empty? %>
+<div class="alert alert-danger">
+  <p>Some groups were successfully created, but there were some errors - see details below.</p>
+  <!-- Warning message if there are ambiguous keys -->
+  <% unless @reported_ambiguous_keys.empty? %>
+  The following reviewer identifiers were ambiguous, e.g. they matched multiple accounts. Their assignments need to be manually created.
+  <% @reported_ambiguous_keys.each do |key| %>
+  <div>
+    <%= key %>
+  </div>
+  <% end %>
+  <% end %>
+
+  <!-- Warning message if any reviewers are not found -->
+  <% unless @reviewers_not_found.empty? %>
+  The following reviewers were not found.
+  <% @reviewers_not_found.each do |key| %>
+  <div>
+    <%= key %>
+  </div>
+  <% end %>
+  <% end %>
+</div>
+<% end %>
+
 <%= form_tag batch_course_instance_groups_path(@course_instance), html: { multipart: true } do |f| -%>
   <div class="hint">
     Paste the student list here to create groups and/or assign groups to reviewers

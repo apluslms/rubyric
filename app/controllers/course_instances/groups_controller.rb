@@ -64,10 +64,17 @@ class CourseInstances::GroupsController < GroupsController
     @course_instance = CourseInstance.find(params[:course_instance_id])
     load_course
     authorize! :update, @course_instance
+
+    @reported_ambiguous_keys = []
+    @reviewers_not_found = []
     
     if params[:paste]
-      @course_instance.batch_create_groups(params[:paste])
-      redirect_to course_instance_groups_path
+      batch_create_groups_errors = @course_instance.batch_create_groups(params[:paste])
+      @reported_ambiguous_keys = batch_create_groups_errors[:reported_ambiguous_keys]
+      @reviewers_not_found = batch_create_groups_errors[:reviewers_not_found]
+      if @reported_ambiguous_keys.empty? and @reviewers_not_found.empty?
+        redirect_to course_instance_groups_path
+      end
       log "batch_groups upload"
     else
       log "batch_groups view"
