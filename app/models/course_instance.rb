@@ -227,15 +227,14 @@ class CourseInstance < ApplicationRecord
       end
     end
 
+    reviewers_not_found = []
+    reported_ambiguous_keys = []
+
     # Load assistants
     reviewers = {}   # key => User
     reviewers_ambiguous_keys = {}
     reviewer_keys = [:email, :studentnumber] # , :firstname, :lastname, :name
     (self.course.teachers + self.assistants + self.students).each do |user|
-      # Ignore LTI users as they cause problems because of duplicate email addresses.
-      # This check can be removed if an email address is not saved for LTI users.
-      next unless user.lti_user_id.blank?
-
       reviewer_keys.each do |key|
         value = user.send(key)
         next unless value
@@ -357,14 +356,14 @@ class CourseInstance < ApplicationRecord
 
           # Detect ambiguous keys
           if reviewers_ambiguous_keys[reviewer_key]
-            # TODO: warn about ambiguous key
+            reported_ambiguous_keys.push(reviewer_key)
             logger.debug "Ambiguous key #{reviewer_key}"
             next
           end
 
           reviewer = reviewers[reviewer_key]
           unless reviewer
-            # TODO: warn that reviewer was not found
+            reviewers_not_found.push(reviewer_key)
             logger.debug "Reviewer #{reviewer_key} not found"
             next
           end
@@ -373,6 +372,7 @@ class CourseInstance < ApplicationRecord
         end
       end
     end
+    return { :reported_ambiguous_keys => reported_ambiguous_keys, :reviewers_not_found => reviewers_not_found }
   end
 
 end
