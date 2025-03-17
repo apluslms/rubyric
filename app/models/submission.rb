@@ -248,7 +248,7 @@ class Submission < ApplicationRecord
     end
 
     # Create renderings path
-    FileUtils.makedirs PDF_CACHE_PATH unless File.exists? PDF_CACHE_PATH
+    FileUtils.makedirs PDF_CACHE_PATH unless File.exist? PDF_CACHE_PATH
 
     unless image_exists
       # Convert pdf to bitmap

@@ -3,11 +3,11 @@ Encoding.default_internal = Encoding::UTF_8
 
 source 'https://rubygems.org'
 
-ruby '>=2.3.1'
+ruby '~> 3.1.0'
 
-gem 'rails', '~> 6.1.6'
+gem "rails", '~> 7.0.0'
 
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 5.0'
 
 #gem 'pg'
 gem 'pg', '~> 1.1'
@@ -28,6 +28,7 @@ gem 'mini_racer', '0.6.2'
 
 gem 'uglifier', '>= 3.0'
 gem 'jquery-ui-rails', '~> 4.2.0'
+gem 'sprockets-rails', '2.3.3'
 
 
 group :development, :test do
